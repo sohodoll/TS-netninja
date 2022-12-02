@@ -1,3 +1,5 @@
+//----------TYPES----------
+
 // const character = "mario";
 // console.log(character);
 
@@ -37,7 +39,7 @@
 //     age: '213', //error! should match the initial structure
 // };
 
-//explicit types
+//----------EXPLICIT TYPES----------
 
 // let character: string;
 // let age: number;
@@ -45,17 +47,78 @@
 
 // let ninjas: string[] = [];
 
-// //union types
+//----------UNION TYPES----------
 
 // let mixed: (string | number)[] = [];
 
 // let uid: string | number; //normal variable
 
-// //objects
+//----------OBJECTS----------
 // let ninja: {
 //     name: string;
 //     age: number;
 // };
 // let ninjaTwo: object; //can be an array!
 
-console.log('test');
+// console.log('test');
+
+//----------FUNCTION TYPE----------
+
+// let greet = () => {
+//     console.log('fwe');
+// };
+
+// greet = 'sdf'; //can't
+
+// let greet: Function;
+
+// greet = () => {
+//     console.log('fwe');
+// };
+
+// const add = (a: number, b: number, c?: number | string) => {
+//     console.log(a + b);
+// };
+
+// //c? is option argument / c = 10 means default is 10 (use one or the other)
+
+// add(5, 10);
+
+// const minus = (a: number, b: number): number => {
+//     //we can specify the function return type
+//     return a + b;
+// };
+
+// let result = minus(10, 7); //TS knows it is a number
+
+//----------TYPE ALIASES----------
+
+type StringOrNum = string | number; //creating type aliases
+type objWithName = { name: string; uid: StringOrNum };
+
+//----------FUNCTION SIGNATURES----------
+
+let greet: (a: string, b: string) => void;
+greet = (name: string, greeting: string) => {
+    console.log(name, greeting);
+};
+
+//
+let calc: (a: number, b: number, c: string) => number;
+
+calc = (numOne: number, numTwo: number, action: string) => {
+    if (action === 'add') {
+        return numOne + numTwo;
+    } //error because if action is not add we are NOT returning a number as specified
+    else {
+        return numOne - numTwo;
+    }
+};
+//
+type person = { name: string; age: number };
+
+let logDetails: (obj: person) => void;
+
+logDetails = (ninja: person) => {
+    console.log(ninja.name, ninja.age);
+};
