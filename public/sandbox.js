@@ -189,3 +189,7 @@
 //     resourceType: ResourceType.PERSON,
 //     data: { title: 'mario' },
 // };
+//----------TUPLES----------
+let arr = ['ryu', 25, true];
+arr[0] = false; // works!
+let tup = ['tuy', 24, true]; //each position is defined now, can;t change it to another type value
