@@ -93,8 +93,8 @@
 
 //----------TYPE ALIASES----------
 
-type StringOrNum = string | number; //creating type aliases
-type objWithName = { name: string; uid: StringOrNum };
+// type StringOrNum = string | number; //creating type aliases
+// type objWithName = { name: string; uid: StringOrNum };
 
 //----------FUNCTION SIGNATURES----------
 
@@ -152,24 +152,104 @@ type objWithName = { name: string; uid: StringOrNum };
 
 //----------PUBLIC, PRIVATE, READONLY----------
 
-class Invoice {
-    // readonly client: string;
-    // private details: string;
-    // public amount: number;
+// class Invoice {
+//     // readonly client: string;
+//     // private details: string;
+//     // public amount: number;
 
-    // constructor(c: string, d: string, a: number) {
-    //     this.client = c;
-    //     this.details = d;
-    //     this.amount = a;
-    // }
+//     // constructor(c: string, d: string, a: number) {
+//     //     this.client = c;
+//     //     this.details = d;
+//     //     this.amount = a;
+//     // }
 
-    constructor(
-        readonly client: string,
-        private details: string,
-        public amount: number
-    ) {} //shortcut
+//     constructor(
+//         readonly client: string,
+//         private details: string,
+//         public amount: number
+//     ) {} //shortcut
 
-    format() {
-        return `${this.client} owes $${this.amount} for ${this.details}`;
-    }
-}
+//     format() {
+//         return `${this.client} owes $${this.amount} for ${this.details}`;
+//     }
+// }
+
+//------------GENERICS------------
+
+// const addUID = <T extends { name: string }>(obj: T) => {
+//     //<T> captures what properties are on the object so we have access to them
+//     let uid = Math.floor(Math.random() * 100); //it does not know that .name exists!
+//     return { ...obj, uid }; //return a new object with UID attached
+// };
+
+// let docOne = addUID({ name: 'mario', age: 69 });
+// // let docTwo = addUID('13'); //does not work because 'extends object'
+
+//generics and interfaces
+
+// interface Resource<T> {
+//     //T!!!
+//     uid: number;
+//     resourceName: string;
+//     data: T;
+// }
+
+// const docThree: Resource<string> = {
+//     //STRING!!!
+//     uid: 1,
+//     resourceName: 'person',
+//     data: 'SEAN',
+// };
+
+// const docFour: Resource<string[]> = {
+//     uid: 2,
+//     resourceName: 'list',
+//     data: ['cey', 'may'],
+// };
+
+//------ENUMS--------
+//Special type to store keywords and associate them with numeric values
+
+// interface Resource<T> {
+//     uid: number;
+//     resourceType: number;
+//     data: T;
+// }
+
+// const docOne: Resource<object> = {
+//     uid: 1,
+//     resourceType: 3,
+//     data: { title: 'brothers' },
+// };
+
+// const docTwo: Resource<object> = {
+//     uid: 1,
+//     resourceType: 4,
+//     data: { title: 'mario' },
+// };
+
+// enum ResourceType {
+//     BOOK,
+//     AUTHOR,
+//     FILM,
+//     DIRECTOR,
+//     PERSON,
+// }
+
+// interface Resource<T> {
+//     uid: number;
+//     resourceType: ResourceType;
+//     data: T;
+// }
+
+// const docOne: Resource<object> = {
+//     uid: 1,
+//     resourceType: ResourceType.BOOK,
+//     data: { title: 'brothers' },
+// };
+
+// const docTwo: Resource<object> = {
+//     uid: 1,
+//     resourceType: ResourceType.PERSON,
+//     data: { title: 'mario' },
+// };
